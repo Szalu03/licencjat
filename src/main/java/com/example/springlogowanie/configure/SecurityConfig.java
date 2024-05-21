@@ -50,15 +50,16 @@ public class SecurityConfig{
         http
                 .authorizeRequests(auth -> auth
                         .requestMatchers("/login", "register").permitAll()
-                        .requestMatchers("admin/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers("admin/**").hasAnyAuthority("admin")
                         .anyRequest().authenticated()
                 )
+                .csrf(csrf->csrf.disable())
                 .formLogin(form -> form
                         .loginPage("/login")
                         .successHandler(new CustomLoginSuccessHandler())
                         .permitAll()
                 )
-                .logout(LogoutConfigurer::permitAll);
+                .logout(logout -> logout.permitAll());
 
         return http.build();
     }

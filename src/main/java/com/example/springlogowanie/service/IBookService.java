@@ -1,4 +1,4 @@
-package com.example.springlogowanie.repository;
+package com.example.springlogowanie.service;
 
 import com.example.springlogowanie.model.Book;
 

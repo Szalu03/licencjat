@@ -1,6 +1,7 @@
 package com.example.springlogowanie.controller;
 
 import com.example.springlogowanie.model.User;
+import com.example.springlogowanie.service.BookService;
 import com.example.springlogowanie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,7 @@ public class RegisterController {
 
     @Autowired
     private UserService userService;
+    private BookService bookService;
 
 
     @GetMapping("/register")
