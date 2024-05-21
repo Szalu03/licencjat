@@ -2,10 +2,11 @@ package com.example.springlogowanie.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
+import org.antlr.v4.runtime.misc.NotNull;
+
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 @Entity
@@ -15,9 +16,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Nazwa użytkownika jest wymagana")
+    @NotBlank(message = "Nazwa uzytkownika jest wymagana")
     private String username;
-    @NotBlank(message = "Hasło jest wymagane")
+    @NotBlank(message = "Haslo jest wymagane")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -28,27 +29,20 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
+    public @NotBlank(message = "Nazwa uzytkownika jest wymagana") String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(@NotBlank(message = "Nazwa uzytkownika jest wymagana") String username) {
         this.username = username;
     }
 
-    public String getPassword() {
+    public @NotBlank(message = "Haslo jest wymagane") String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(@NotBlank(message = "Haslo jest wymagane") String password) {
         this.password = password;
     }
 

@@ -1,6 +1,7 @@
 package com.example.springlogowanie.controller;
 
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -11,8 +12,9 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/admin/adminpanel")
-    public String adminpanel() {
-        return "adminpanel";
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/user")
+    public String userEndpoint() {
+        return "hello, user!";
     }
 }
