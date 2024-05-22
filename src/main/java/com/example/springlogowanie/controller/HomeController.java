@@ -1,6 +1,7 @@
 package com.example.springlogowanie.controller;
 
 
+import com.example.springlogowanie.model.Book;
 import com.example.springlogowanie.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,20 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
     @Autowired
-    private BookService bookService;
-    @GetMapping({"/home","/"})
-    public String home() {
+    BookService bookService;
+    @RequestMapping(path = "/home", method = RequestMethod.GET)
+    public String main(Model model) {
+        model.addAttribute("books", this.bookService.getAll());
         return "home";
     }
 
-    @GetMapping("/admin/adminpanel")
-    public String adminpanel() {
-        return "adminpanel";
-    }
-    @RequestMapping(path = {"/main", "/", "/index"}, method = RequestMethod.GET)
-    public String main (Model model) {
-        model.addAttribute("books", this.bookService.getAll());
-        return "index";
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/user")
+    public String userEndpoint() {
+        return "hello, user!";
     }
 }
-

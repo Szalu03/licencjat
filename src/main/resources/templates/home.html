@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Strona główna</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
 </head>
 <body>
-<h1>Witaj na stronie glownej!</h1>
-<p>Jestes zalogowany!</p>
+<h1>Welcome!</h1>
+<div th:each="book: ${books}">
+    <div th:text="${book.id}"></div>
+    <div th:text="${book.title}"></div>
+    <div th:text="${book.author}"></div>
+    <div th:text="${'Cena: ' + book.price + 'zl'}"></div>
+    <div th:text="${'Ilość: ' + book.quantity}"></div>
+</div>
 <form th:action="@{/logout}" method="post">
-    <button type="submit">Wyloguj sie</button>
+    <button type="submit">Log out</button>
 </form>
 </body>
 </html>
