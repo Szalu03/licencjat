@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<h1>Koszyk</h1>
+<div th:if="${cart.items.isEmpty()}">
+    <p>Koszyk pusty.</p>
+</div>
+<div th:unless="${cart.items.isEmpty()}">
+    <table>
+        <thead>
+        <tr>
+            <th>Tytul</th>
+            <th>Autor</th>
+            <th>Cena</th>
+            <th>Ilosc</th>
+            <th>Usun</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${cart.items}">
+            <td th:text="${item.book.title}"></td>
+            <td th:text="${item.book.author}"></td>
+            <td th:text="${item.book.price}"></td>
+            <td th:text="${item.quantity}"></td>
+            <td>
+                <form th:action="@{/cart/remove/{bookId}(bookId=${item.book.id})}" method="get">
+                    <button type="submit">usun</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

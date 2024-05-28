@@ -1,17 +1,5 @@
 
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head><title>Main</title></head>
-<body>
-<div>
-    <div th:each="book: ${books}">
-        <div th:text="${book.id}"></div>
-        <div th:text="${book.title}"></div>
-        <div th:text="${book.author}"></div>
-        <div th:text="${'Cena: ' + book.price + 'zl'}"></div>
-        <div th:text="${'Ilość: ' + book.quantity}"></div>
-        <a th:href="@{/book/update/{id}(id=${book.id})}">Edytuj</a>
-        <form method="post" th:action="@{/book/delete}">
+/* <form method="post" th:action="@{/book/delete}">
             <input type="hidden" th:name="id" th:value="${book.id}"/>
             <input type="submit" th:value="Usun" />
         </form>

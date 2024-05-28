@@ -16,6 +16,25 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+    @OneToOne (cascade = CascadeType. ALL, orphanRemoval = true)
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
     @NotBlank(message = "Nazwa uzytkownika jest wymagana")
     private String username;
     @NotBlank(message = "Haslo jest wymagane")
@@ -28,6 +47,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+
 
 
     public @NotBlank(message = "Nazwa uzytkownika jest wymagana") String getUsername() {
