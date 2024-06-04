@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Historia Zamówień</title>
+</head>
+<body>
+<h1>Historia Zamówień</h1>
+<div th:each="order : ${userOrderHistory}">
+    <!-- Wyświetl szczegóły zamówienia -->
+    <h2>Zamówienie ID: <span th:text="${order.id}"></span></h2>
+    <p>Data: <span th:text="${order.date}"></span></p>
+    <p>Status: <span th:text="${order.status}"></span></p>
+    <h3>Produkty</h3>
+    <div th:each="item : ${order.items}">
+        <p>Tytuł: <span th:text="${item.book.title}"></span></p>
+        <p>Autor: <span th:text="${item.book.author}"></span></p>
+        <p>Cena: <span th:text="${item.book.price}"></span></p>
+        <p>Ilość: <span th:text="${item.quantity}"></span></p>
+    </div>
+</div>
+</body>
+</html>
