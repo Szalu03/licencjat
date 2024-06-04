@@ -14,6 +14,9 @@
     <div th:text="${'Ilość: ' + book.quantity}"></div>
     <a th:href="@{/cart/add/{bookId}/1(bookId=${book.id})}">Add to Cart</a>
 </div>
+<a href="/order/history">
+    <button>View Order History</button>
+</a>
 <form th:action="@{/logout}" method="post">
     <button type="submit">Log out</button>
 </form>

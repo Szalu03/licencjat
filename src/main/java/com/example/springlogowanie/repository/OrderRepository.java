@@ -1,2 +1,11 @@
-package com.example.springlogowanie.repository;public interface OrderRepository {
+package com.example.springlogowanie.repository;
+
+import com.example.springlogowanie.model.Order;
+import com.example.springlogowanie.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface OrderRepository extends JpaRepository<Order,Long> {
+    List<Order> findByUser(User user);
 }

@@ -25,14 +25,14 @@ public class BookController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@ModelAttribute Book book) {
         this.bookService.saveOrUpdate(book);
-        return "redirect:/admin/adminpanel";
+        return "redirect:/admin/catalog";
     }
 
     @RequestMapping(path = "/update/{id}", method = RequestMethod.GET)
     public String update(@PathVariable int id, Model model) {
         Optional<Book> bookOptional = this.bookService.getById(id);
         if (bookOptional.isEmpty()) {
-            return "redirect:/admin/adminpanel";
+            return "redirect:/admin/catalog";
         }
         else {
             model.addAttribute("book", bookOptional.get());
@@ -42,13 +42,13 @@ public class BookController {
     @RequestMapping(path = "/update/{id}", method = RequestMethod.POST)
     public String update(@PathVariable int id, @ModelAttribute Book book) {
         this.bookService.saveOrUpdate(book);
-        return "redirect:/admin/adminpanel";
+        return "redirect:/admin/catalog";
     }
 
     @PostMapping("/delete")
     public String delete(@RequestParam int id) {
         bookService.delete(id);
-        return "redirect:/admin/adminpanel";
+        return "redirect:/admin/catalog";
     }
 
 

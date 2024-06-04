@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Historia Zamówień</title>
+    <meta charset="UTF-8">
+    <title>Order History</title>
 </head>
 <body>
-<h1>Historia Zamówień</h1>
-<div th:each="order : ${userOrderHistory}">
-    <!-- Wyświetl szczegóły zamówienia -->
-    <h2>Zamówienie ID: <span th:text="${order.id}"></span></h2>
-    <p>Data: <span th:text="${order.date}"></span></p>
+<h1>Your Order History</h1>
+<div th:each="order: ${orderHistory}">
+    <h2>Order ID: <span th:text="${order.id}"></span></h2>
+    <p>Date: <span th:text="${#dates.format(order.date, 'dd-MM-yyyy')}"></span></p>
     <p>Status: <span th:text="${order.status}"></span></p>
-    <h3>Produkty</h3>
-    <div th:each="item : ${order.items}">
-        <p>Tytuł: <span th:text="${item.book.title}"></span></p>
-        <p>Autor: <span th:text="${item.book.author}"></span></p>
-        <p>Cena: <span th:text="${item.book.price}"></span></p>
-        <p>Ilość: <span th:text="${item.quantity}"></span></p>
-    </div>
+    <h3>Ordered Items:</h3>
+    <ul>
+        <li th:each="item : ${order.items}">
+            Book Title: <span th:text="${item.book.title}"></span>,
+            Quantity: <span th:text="${item.quantity}"></span>
+        </li>
+    </ul>
 </div>
+<a href="/home">
+    <button>Back to Home</button>
+</a>
 </body>
 </html>
