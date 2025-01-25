@@ -2,6 +2,10 @@
 <div th:if="${cart.items.isEmpty()}">
     <p>Koszyk pusty.</p>
 </div>
+<div th:if="${errorMessage}">
+    <p th:text="${errorMessage}"></p>
+
+</div>
 <div th:unless="${cart.items.isEmpty()}">
     <table>
         <thead>

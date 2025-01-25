@@ -18,6 +18,7 @@ public class OrderService {
     @Autowired
     OrderRepository orderRepository;
 
+
     @Transactional
     public Order submitOrder() {
 
@@ -32,6 +33,7 @@ public class OrderService {
             if (book.getQuantity() < cartItem.getQuantity()) {
                 throw new RuntimeException("Not enough stock for book: " + book.getTitle());
             }
+            book.setQuantity(book.getQuantity()-1);
             OrderItem orderItem = new OrderItem();
 
             orderItem.setBook(cartItem.getBook());
