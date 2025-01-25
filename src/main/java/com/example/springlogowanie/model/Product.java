@@ -1,27 +1,23 @@
 package com.example.springlogowanie.model;
-
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 
-@NoArgsConstructor
+@Entity
+@Table(name = "products")
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode
-@Entity
-@Table(name = "books")
-public class Book {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String title;
-    private String author;
-    private BigDecimal price;
-    private int quantity;
 
-    public Book(int id) {
-        this.id = id;
-    }
+    private String name;
+    private String description;
+    private BigDecimal price;
+    private int stock;
 }

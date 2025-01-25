@@ -1,6 +1,5 @@
 package com.example.springlogowanie.controller;
 
-import com.example.springlogowanie.service.BookService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,10 +18,6 @@ import java.io.IOException;
 @Controller
 public class LoginController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    private BookService bookService;
-
     @GetMapping("/login")
     public String showLoginForm(
             @RequestParam(value = "error", required = false) String error,
@@ -30,14 +25,14 @@ public class LoginController {
             Model model
     ) {
         if (error != null) {
-            model.addAttribute("error", error);
+            System.err.println("Login error detected");
+            model.addAttribute("error", "Nieprawidłowa nazwa użytkownika lub hasło");
         }
         if (logout != null) {
-            model.addAttribute("logout", logout);
+            System.out.println("User logged out successfully");
+            model.addAttribute("logout", "Wylogowano pomyślnie");
         }
         return "login";
     }
-
-
-
 }
+

@@ -1,10 +1,11 @@
 package com.example.springlogowanie.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Setter
+@Getter
 @Entity
 @Table(name = "order_items")
 public class OrderItem {
@@ -13,43 +14,13 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="book_id")
-    private Book book;
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     private int quantity;
+
     @ManyToOne
-    @JoinColumn(name="order_id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }

@@ -24,39 +24,49 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-
     @Transactional
-    public String registerUser (User user) {
-        if
-        (userRepository.findByUsername (user.getUsername()).isPresent()){
+    public String registerUser(User user) {
+        System.out.println("Registering new user: " + user.getUsername());
+
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+            System.err.println("Registration failed: Username already exists");
             return "failure";
         }
-        user.setPassword (passwordEncoder.encode(user.getPassword()));
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println("Password encoded successfully for user: " + user.getUsername());
+
         user.setCart(new Cart());
-        Role userRole =
-                roleRepository.findByName("USER").orElse(null);
-//System.out.println(userRole.getName());
-        if (userRole != null) {
-            user.getRoles().add(userRole);
-        }
-        else {
-            Role role = new Role(); role.setName("USER");
-            user.getRoles().add(role);
-            roleRepository.save(role);
-        }
+        Role userRole = roleRepository.findByName("ROLE_USER").orElseGet(() -> {
+            Role newRole = new Role();
+            newRole.setName("ROLE_USER");
+            roleRepository.save(newRole);
+            System.out.println("Created and saved new role: ROLE_USER");
+            return newRole;
+        });
+
+        user.getRoles().add(userRole);
         userRepository.save(user);
+
+        System.out.println("User registered successfully: " + user.getUsername());
         return "success";
     }
 
     @Transactional
-    public void save (User user) { userRepository.save(user);
-    }
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-    @Transactional
     public User getCurrentUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = ((UserDetails) principal).getUsername(); return userRepository.findByUsername (username).orElse(null);
+        System.out.println("Fetching current authenticated user");
+
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails) principal).getUsername();
+            System.out.println("Authenticated username: " + username);
+            return userRepository.findByUsername(username).orElseThrow(() -> {
+                System.err.println("Current user not found in database: " + username);
+                return new RuntimeException("User not found");
+            });
+        }
+
+        System.err.println("No authenticated user found in SecurityContext");
+        throw new RuntimeException("No authenticated user found");
     }
 }
