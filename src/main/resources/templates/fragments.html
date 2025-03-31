@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
 </head>
 <body>
-$END$
+<!-- Fragment footera z luksusowym stylem -->
+<footer th:fragment="footer" class="footer mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h5>E-COM</h5>
+                <p>Twój sklep internetowy z elektroniką i nie tylko.</p>
+            </div>
+            <div class="col-md-3">
+                <h5>Linki</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/home">Strona główna</a></li>
+                    <li><a href="/products">Produkty</a></li>
+                    <li><a href="/order/history">Zamówienia</a></li>
+                    <li><a href="/cart">Koszyk</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Kontakt</h5>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-envelope"></i> kontakt@ecom.pl</li>
+                    <li><i class="fas fa-phone"></i> +48 123 456 789</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Warszawa, PL</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Śledź nas</h5>
+                <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <p>© 2025 E-COM. Wszystkie prawa zastrzeżone.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Style dla luksusowego footera -->
+<style th:fragment="footer-styles">
+    .footer {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2b2b2b 100%) !important; /* Ciemne tło z gradientem */
+        color: #d4af37 !important; /* Złoty kolor tekstu */
+        padding: 40px 0 !important;
+        font-family: 'Arial', sans-serif !important;
+    }
+    .footer h5 {
+        color: #d4af37 !important; /* Złoty kolor nagłówków */
+        font-weight: bold !important;
+        margin-bottom: 20px !important;
+    }
+    .footer p, .footer li {
+        color: #b3b3b3 !important; /* Jasnoszary dla zwykłego tekstu */
+    }
+    .footer a {
+        color: #d4af37 !important; /* Złoty kolor linków */
+        text-decoration: none !important;
+        transition: color 0.3s ease !important;
+    }
+    .footer a:hover {
+        color: #ffffff !important; /* Biały kolor po najechaniu */
+    }
+    .footer .text-center p {
+        color: #b3b3b3 !important;
+        font-size: 0.9rem !important;
+    }
+    .footer i {
+        font-size: 1.2rem !important;
+    }
+</style>
 </body>
 </html>

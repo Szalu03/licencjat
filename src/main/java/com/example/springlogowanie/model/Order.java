@@ -1,5 +1,6 @@
 package com.example.springlogowanie.model;
 
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +8,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 @Setter
 @Getter
 @Entity
@@ -21,7 +21,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<OrderItem> items = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
@@ -29,5 +29,4 @@ public class Order {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-
 }

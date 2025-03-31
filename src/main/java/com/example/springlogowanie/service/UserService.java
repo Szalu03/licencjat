@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -68,5 +70,10 @@ public class UserService {
 
         System.err.println("No authenticated user found in SecurityContext");
         throw new RuntimeException("No authenticated user found");
+    }
+    @Transactional
+    public List<User> getAllUsers() {
+        System.out.println("Fetching all users from database");
+        return userRepository.findAll();
     }
 }
