@@ -19,7 +19,7 @@ public class HomeController {
         // Pobierz wszystkie produkty
         model.addAttribute("products", productService.getAll());
         // Pobierz rekomendowane produkty dla bieżącego użytkownika
-        model.addAttribute("recommendedProducts", productService.getRecommendations(null));
+        model.addAttribute("recommendedProducts", productService.getRecommendations());
         return "home";
     }
 
