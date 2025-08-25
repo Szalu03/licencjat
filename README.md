@@ -27,3 +27,4 @@ Springlogowanie to aplikacja e-commerce z systemem rekomendacji produktów, opar
 
 - SpringLogowanieApplication
 - Tym plikiem uruchamia sie aplikacje.
+- Strona sie odpala na [Localhost:8080](http://localhost:8080/)
